@@ -9,10 +9,10 @@ const sleep = require('./stoped/sleep');
 const tsconfig = "";
 const { start } = require('repl');
 
-const rpcUrl = 'https://sepolia.infura.io/v3/';
+const rpcUrl = 'https://1rpc.io/sepolia	';
 
 const MAX_RETRIES = 3;
-const RETRY_DELAY = 3333;
+const RETRY_DELAY = 21000;
 
 async function retry(fn, maxRetries = MAX_RETRIES, delay = RETRY_DELAY) {
   for (let i = 0; i < maxRetries; i++) {
@@ -101,14 +101,14 @@ const main = async () => {
       console.log(colors.white(`\nGenerated address ${i}: ${receiverAddress}`));
 
       const amountToSend = ethers.parseUnits(
-        (Math.random() * (0.0000001 - 0.00000001) + 0.00000001)
+        (Math.random() * (0.00001 - 0.000001) + 0.0000001)
           .toFixed(10)
           .toString(),
         'ether'
       );
 
       const gasPrice = ethers.parseUnits(
-        (Math.random() * (0.000015 - 0.00002) + 0.00001).toFixed(9).toString(),
+        (Math.random() * (170 - 80) + 30).toFixed(9).toString(),
         'gwei'
       );
 
@@ -147,6 +147,7 @@ const main = async () => {
         )
       );
 
+      await sleep(22000)
 
       let receipt;
       try {
